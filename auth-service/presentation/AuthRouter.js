@@ -40,7 +40,7 @@ module.exports = (UserModel) => {
         return res.status(400).json({ message: 'Email & password are required' });
       }
 
-      // Cek user s
+      // Cek user sa
       const user = await UserModel.findOne({ where: { email } });
       if (!user) {
         return res.status(401).json({ message: 'Invalid credentials' });
