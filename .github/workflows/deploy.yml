@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  REGION: asia-southeast2    # ganti sesuai region Artifact Registry kamu
-  REPO_NAME: mercari-repo    # ganti sesuai nama repo Artifact Registry
+  REGION: asia-southeast2
+  REPO_NAME: mercari-repo
 
 jobs:
   build-and-deploy:
@@ -57,7 +57,7 @@ jobs:
           -t ${{ env.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/gateway-service:latest \
           ./gateway-service --push
 
-    # SSH to VM and Deploy (pastikan docker-compose.yml sudah ada di VM)
+    # SSH to VM and Deploy
     - name: Deploy on VM via SSH
       uses: appleboy/ssh-action@v1.0.0
       with:
@@ -65,6 +65,6 @@ jobs:
         username: ${{ secrets.VM_USER }}
         key: ${{ secrets.VM_SSH_KEY }}
         script: |
-          cd ~/mercari         # atau ganti path sesuai lokasi project di VM
+          cd ~/mercari           # ganti jika path repo di VM berbeda
           docker-compose pull
           docker-compose up -d --remove-orphans

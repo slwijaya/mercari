@@ -1,6 +1,6 @@
 // auth/presentation/authController.js
 const AuthService = require('../application/AuthService');
-
+//register
 async function register(req, res) {
   try {
     const { email, password } = req.body;
@@ -13,7 +13,7 @@ async function register(req, res) {
     res.status(400).json({ message: err.message });
   }
 }
-//
+//login
 async function login(req, res) {
   try {
     const { email, password } = req.body;
