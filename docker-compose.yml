@@ -1,0 +1,49 @@
+services:
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "4000:4000"
+    environment:
+      - DB_USER=postgres
+      - DB_PASS=8Gb"ea]QNO_A>?Q(
+      - DB_NAME=authdb
+      - DB_HOST=34.101.90.101
+      - DB_PORT=5432
+      - DB_DIALECT=postgres
+      - JWT_SECRET=mysecretkey
+    restart: unless-stopped
+
+  cart-service:
+    build: ./cart
+    ports:
+      - "4001:4001"
+    environment:
+      - DB_USER=postgres
+      - DB_PASS=8Gb"ea]QNO_A>?Q(
+      - DB_NAME=cartdb
+      - DB_HOST=34.101.90.101
+      - DB_PORT=5432
+      - DB_DIALECT=postgres
+      - JWT_SECRET=mysecretkey
+    restart: unless-stopped
+
+  product-service:
+    build: ./product
+    ports:
+      - "4002:4002"
+    environment:
+      - DB_USER=postgres
+      - DB_PASS=8Gb"ea]QNO_A>?Q(
+      - DB_NAME=productdb
+      - DB_HOST=34.101.90.101
+      - DB_PORT=5432
+      - DB_DIALECT=postgres
+    restart: unless-stopped
+
+  gateway-service:
+    build: ./gateway-service
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped

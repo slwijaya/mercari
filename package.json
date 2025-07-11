@@ -1,0 +1,11 @@
+{
+  "name": "mercari",
+  "private": true,
+  "workspaces": [
+    "auth-service",
+    "cart",
+    "product",
+    "shared",
+    "gateway-service"
+  ]
+}
