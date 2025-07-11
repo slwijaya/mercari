@@ -21,7 +21,7 @@ module.exports = (UserModel) => {
         return res.status(400).json({ message: 'Email already exists' });
       }
 
-      // Hash password sebelum simpan
+      // Hash password sebelum simpan sa
       const hashed = await bcrypt.hash(password, 10);
       const user = await UserModel.create({ email, password: hashed });
 
